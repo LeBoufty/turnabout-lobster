@@ -1,0 +1,17 @@
+[[evidence]]
+fullname = "Revolver"
+alias = "rev"
+description = "The weapon of the crime. Has Joe's fingerprints."
+weight = 0
+
+[[evidence]]
+fullname = "Family photo"
+alias = "famp"
+description = "A picture of Joe and his family taken the day of the crime."
+weight = 1
+
+[[evidence]]
+fullname = "'MDN' Sponge"
+alias = "spng"
+description = "From a brand said to absorb even buildings. Soaked with blood."
+weight = 2
