@@ -2,6 +2,8 @@ use serde::Deserialize;
 use toml;
 use std::fs;
 
+use crate::courtcase::Case;
+
 // Struct for a piece of evidence that is stored in the court record
 #[derive(Deserialize, Debug)]
 pub struct Evidence {
@@ -17,7 +19,8 @@ struct EvidenceList {
     evidence: Vec<Evidence>,
 }
 
-pub fn load_evidence(filename: String) -> Vec<Evidence> {
+pub fn load_evidence(case: Case) -> Vec<Evidence> {
+    let filename = format!("./cases/{}/evidence.toml", case.get_foldername());
     let contents = fs::read_to_string(filename)
         .expect("Something went wrong reading the file");
 

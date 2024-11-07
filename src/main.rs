@@ -1,6 +1,7 @@
 mod evidence;
+mod courtcase;
 
 fn main() {
-    let record = evidence::load_evidence(String::from("cases/example/evidence.toml"));
-    println!("{:?}", record);
+    let cases = courtcase::load_cases();
+    println!("{:?}", cases);
 }
