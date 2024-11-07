@@ -1,4 +1,4 @@
-use super::Evidence;
+mod evidence;
 
 fn main() {
     println!("Hello, world!");
