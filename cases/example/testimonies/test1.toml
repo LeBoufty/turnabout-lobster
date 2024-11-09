@@ -1,0 +1,13 @@
+[testimonydata]
+title = "Where I was that day"
+character = "Joe"
+
+[[statement]]
+text = "I remember the day of the crime as if it was yesterday."
+
+[[statement]]
+text = "I was hiking alone in the mountains, morning to evening."
+objection = "famp"
+
+[[statement]]
+text = "It was very refreshing, listening the birds and breathing the fresh air."
