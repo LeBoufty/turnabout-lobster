@@ -3,7 +3,7 @@ use toml;
 use std::fs;
 
 use crate::courtcase::Case;
-use promkit::preset::listbox::Listbox;
+use dialoguer::Select;
 
 // Struct for a piece of evidence that is stored in the court record
 #[derive(Deserialize, Debug)]
@@ -69,14 +69,11 @@ pub fn load_evidence(case: &Case) -> EvidenceList {
     evidence_list
 }
 
-pub fn select_evidence(evidence_list: &EvidenceList) -> Result<&Evidence, Box<dyn std::error::Error>> {
-    let mut p = Listbox::new(evidence_list.get_evidence_list())
-        .title("Court record")
-        .listbox_lines(10)
-        .prompt()?;
-    if let Some(e) = evidence_list.get_evidence_from_fullname(&p.run()?) {
-        Ok(e)
-    } else {
-        Err("Failed to find evidence".into())
-    }
+pub fn select_evidence(evidence_list: &EvidenceList) -> &Evidence {
+    let p = Select::new()
+        .with_prompt("Court record")
+        .items(&evidence_list.get_evidence_list())
+        .interact()
+        .unwrap();
+    &evidence_list.evidence[p]
 }
