@@ -7,9 +7,9 @@ use crate::courtcase::Case;
 use regex::Regex;
 
 #[derive(Deserialize, Debug)]
-pub struct Statement {
-    text: String,
-    objection: Option<String>
+pub struct Statement {          // Struct for testimony statements (not for dialogue)
+    text: String,               // The text of the statement
+    objection: Option<String>   // The evidence that can be used to object to the statement
 }
 
 impl Statement {
@@ -18,12 +18,19 @@ impl Statement {
     }
 
     pub fn format_text(&self) -> String {
+        // Regex to find text to put in red
         let re = Regex::new(r"!\[(.*?)\]").unwrap();
         let mut formatted_text = self.text.clone();
 
         for cap in re.captures_iter(&self.text) {
             let matched_text = &cap[0];
             let inner_text = &cap[1];
+            // Make the remaining text green
+            // If we don't do this, what comes after the red text will be white instead of green
+            let remaining_text = formatted_text.split_at(formatted_text.find(matched_text).unwrap() + matched_text.len()).1;
+            let green_text = style(remaining_text).green().to_string();
+            formatted_text = formatted_text.replace(remaining_text, &green_text);
+            // Then we can make the highlited text red
             let styled_text = style(inner_text).red().to_string();
             formatted_text = formatted_text.replace(matched_text, &styled_text);
         }
@@ -33,11 +40,11 @@ impl Statement {
 }
 
 #[derive(Deserialize, Debug)]
-pub struct TestimonyData {
-    title: String,
-    character: String,
-    alias: String,
-    statements: Vec<Statement>
+pub struct TestimonyData {      // Struct for testimony data
+    title: String,              // The title of the testimony
+    character: String,          // The character that is giving the testimony
+    alias: String,              // The alias of the testimony
+    statements: Vec<Statement>  // The statements that the character will make
 }
 
 impl TestimonyData {
