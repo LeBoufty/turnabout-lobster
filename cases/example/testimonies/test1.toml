@@ -1,13 +1,13 @@
-[testimonydata]
 title = "Where I was that day"
 character = "Joe"
+alias = "test1"
 
-[[statement]]
+[[statements]]
 text = "I remember the day of the crime as if it was yesterday."
 
-[[statement]]
+[[statements]]
 text = "I was hiking alone in the mountains, morning to evening."
 objection = "famp"
 
-[[statement]]
-text = "It was very refreshing, listening the birds and breathing the fresh air."
+[[statements]]
+text = "It was ![very refreshing], listening the birds and breathing the fresh air. You could do that ![more often] you know!"
